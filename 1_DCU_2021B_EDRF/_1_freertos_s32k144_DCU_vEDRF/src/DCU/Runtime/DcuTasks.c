@@ -28,9 +28,12 @@
 #include "DcuTasks.h"
 
 /* Local Function Prototypes */
-void Tasks_StartOS(void);
+static void Tasks_StartOS(void);
 
+void app_task_10ms( void *pvParameters );
+void app_task_100ms( void *pvParameters );
 
+# if(0)
 /* ============================================================================
  * Function Name:
  * Description:
@@ -58,10 +61,12 @@ void app_task_200ms( void *pvParameters )
 
 	}
 }
+# endif
 
-void Tasks_StartOS(void)
+static void Tasks_StartOS(void)
 {
-	xTaskCreate(app_task_200ms,        "App200ms",         configMINIMAL_STACK_SIZE, NULL,  5, NULL);
+	(void) xTaskCreate(app_task_10ms,        "App10ms",         configMINIMAL_STACK_SIZE, NULL,  5, NULL);
+	(void) xTaskCreate(app_task_100ms,       "App100ms",        configMINIMAL_STACK_SIZE, NULL,  4, NULL);
 
 	Mpu_Init();
 
@@ -80,4 +85,61 @@ void init_hook(void) {
     Adc_Init();
 
 	Tasks_StartOS();
+}
+
+
+/* ============================================================================
+ * Function Name:
+ * Description:
+ * Arguments:
+ * Return:
+ * ========================================================================= */
+void app_task_10ms( void *pvParameters )
+{
+	TickType_t xNextWakeTime;
+
+	/* Casting pvParameters to void because it is unused */
+	(void)pvParameters;
+
+	/* Initialize xNextWakeTime - this only needs to be done once. */
+	xNextWakeTime = xTaskGetTickCount();
+
+	for( ;; )
+	{
+
+		/* Place this task in the blocked state until it is time to run again.
+		The block time is specified in ticks, the constant used converts ticks
+		to ms.  While in the Blocked state this task will not consume any CPU
+		time. */
+		vTaskDelayUntil( &xNextWakeTime, pdMS_TO_TICKS(10) );
+
+	}
+}
+
+/* ============================================================================
+ * Function Name:
+ * Description:
+ * Arguments:
+ * Return:
+ * ========================================================================= */
+void app_task_100ms( void *pvParameters )
+{
+	TickType_t xNextWakeTime;
+
+	/* Casting pvParameters to void because it is unused */
+	(void)pvParameters;
+
+	/* Initialize xNextWakeTime - this only needs to be done once. */
+	xNextWakeTime = xTaskGetTickCount();
+
+	for( ;; )
+	{
+
+		/* Place this task in the blocked state until it is time to run again.
+		The block time is specified in ticks, the constant used converts ticks
+		to ms.  While in the Blocked state this task will not consume any CPU
+		time. */
+		vTaskDelayUntil( &xNextWakeTime, pdMS_TO_TICKS(100) );
+
+	}
 }

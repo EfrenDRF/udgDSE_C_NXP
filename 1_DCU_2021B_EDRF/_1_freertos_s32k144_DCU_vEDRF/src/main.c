@@ -18,9 +18,17 @@
 #include <stdint.h>
 #include <stdbool.h>
 
-void rtos_start(void);
+#include "DcuTasks.h"
 
+# if (0)
+void rtos_start(void);
+# endif
 int main(void)
 {
-  rtos_start();
+
+# if (0)
+	rtos_start();
+# endif
+
+	init_hook();
 }
