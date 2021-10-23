@@ -1,4 +1,8 @@
-./.metadata/
-./RemoteSystemsTempFiles/
-./FreeRTOS_TAD_logs/
+
+
+#
+# Ignore idrectories
+#
+RemoteSystemsTempFiles/
+FreeRTOS_TAD_logs/
 /.metadata/
