@@ -20,15 +20,19 @@
 
 #include "DcuTasks.h"
 
-# if (0)
+# if ( 0 )
 void rtos_start(void);
 # endif
+
+
 int main(void)
 {
 
-# if (0)
+#   if ( 0 )
 	rtos_start();
-# endif
+#   endif
 
 	init_hook();
+
+	//d = 1
 }

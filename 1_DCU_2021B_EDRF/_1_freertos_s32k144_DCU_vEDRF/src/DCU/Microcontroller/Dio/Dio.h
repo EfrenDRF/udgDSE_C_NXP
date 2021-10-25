@@ -9,7 +9,7 @@
 #define MICROCONTROLLER_DIO_H_
 
 
-void Dio_Init(void);
+extern void Dio_Init(void);
 
 
 typedef boolean PIN_VALUE;

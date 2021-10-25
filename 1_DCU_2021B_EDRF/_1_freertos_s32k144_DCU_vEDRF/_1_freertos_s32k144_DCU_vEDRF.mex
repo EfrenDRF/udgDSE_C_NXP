@@ -16,11 +16,24 @@
    </preferences>
    <tools>
       <pins name="Pins" version="9.0" enabled="true" update_project_code="true">
+         <generated_project_files>
+            <file path="board/pin_mux.c" update_enabled="true"/>
+            <file path="board/pin_mux.h" update_enabled="true"/>
+         </generated_project_files>
          <pins_profile>
             <processor_version>0.0.0</processor_version>
             <power_domains/>
             <pin_labels>
-               <pin_label pin_num="68" pin_signal="PTB12" label="BTN0" identifier="BTN0"/>
+               <pin_label pin_num="68" pin_signal="PTB12" label="WINDOW_LED2" identifier="WINDOW_LED2"/>
+               <pin_label pin_num="46" pin_signal="PTC14" label="ANTIPINCH_SIGNAL" identifier="ANTIPINCH_SIGNAL"/>
+               <pin_label pin_num="22" pin_signal="PTD15" label="RED_LED" identifier="RED_LED"/>
+               <pin_label pin_num="21" pin_signal="PTD16" label="GREEN_LED" identifier="GREEN_LED"/>
+               <pin_label pin_num="16" pin_signal="PTB6" label="PASSENGER_OPEN_BTN" identifier="PASSENGER_OPEN_BTN"/>
+               <pin_label pin_num="15" pin_signal="PTB7" label="PASSENGER_CLOSE_BTN" identifier="PASSENGER_CLOSE_BTN"/>
+               <pin_label pin_num="96" pin_signal="PTC4" label="REARRIGHT_CLOSE_BTN" identifier="REARRIGHT_CLOSE_BTN"/>
+               <pin_label pin_num="95" pin_signal="PTC5" label="REARRIGHT_OPEN_BTN" identifier="REARRIGHT_OPEN_BTN"/>
+               <pin_label pin_num="43" pin_signal="PTC17" label="REAR_WINDOW_LOCK_BTN" identifier="REAR_WINDOW_LOCK_BTN"/>
+               <pin_label pin_num="69" pin_signal="PTD4" label="WINDOW_LED1" identifier="WINDOW_LED1"/>
             </pin_labels>
          </pins_profile>
          <functions_list>
@@ -32,27 +45,58 @@
                </options>
                <dependencies/>
                <pins>
-                  <pin peripheral="PORTD" signal="port, 16" pin_num="21" pin_signal="PTD16">
-                     <pin_features>
-                        <pin_feature name="direction" value="OUTPUT"/>
-                     </pin_features>
-                  </pin>
                   <pin peripheral="PORTD" signal="port, 15" pin_num="22" pin_signal="PTD15">
                      <pin_features>
                         <pin_feature name="direction" value="OUTPUT"/>
                      </pin_features>
                   </pin>
-                  <pin peripheral="PORTC" signal="port, 13" pin_num="49" pin_signal="PTC13">
-                     <pin_features>
-                        <pin_feature name="direction" value="INPUT"/>
-                     </pin_features>
-                  </pin>
-                  <pin peripheral="PORTC" signal="port, 0" pin_num="40" pin_signal="PTC0">
+                  <pin peripheral="ADC0" signal="se, 12" pin_num="46" pin_signal="PTC14"/>
+                  <pin peripheral="PORTD" signal="port, 16" pin_num="21" pin_signal="PTD16">
                      <pin_features>
                         <pin_feature name="direction" value="OUTPUT"/>
                      </pin_features>
                   </pin>
-                  <pin peripheral="PORTC" signal="port, 1" pin_num="39" pin_signal="PTC1">
+                  <pin peripheral="PORTB" signal="port, 6" pin_num="16" pin_signal="PTB6">
+                     <pin_features>
+                        <pin_feature name="direction" value="INPUT"/>
+                     </pin_features>
+                  </pin>
+                  <pin peripheral="PORTB" signal="port, 7" pin_num="15" pin_signal="PTB7">
+                     <pin_features>
+                        <pin_feature name="direction" value="INPUT"/>
+                     </pin_features>
+                  </pin>
+                  <pin peripheral="PORTE" signal="port, 0" pin_num="94" pin_signal="PTE0">
+                     <pin_features>
+                        <pin_feature name="direction" value="INPUT"/>
+                     </pin_features>
+                  </pin>
+                  <pin peripheral="PORTE" signal="port, 9" pin_num="23" pin_signal="PTE9">
+                     <pin_features>
+                        <pin_feature name="direction" value="INPUT"/>
+                     </pin_features>
+                  </pin>
+                  <pin peripheral="PORTC" signal="port, 5" pin_num="95" pin_signal="PTC5">
+                     <pin_features>
+                        <pin_feature name="direction" value="INPUT"/>
+                     </pin_features>
+                  </pin>
+                  <pin peripheral="PORTC" signal="port, 4" pin_num="96" pin_signal="PTC4">
+                     <pin_features>
+                        <pin_feature name="direction" value="INPUT"/>
+                     </pin_features>
+                  </pin>
+                  <pin peripheral="PORTC" signal="port, 17" pin_num="43" pin_signal="PTC17">
+                     <pin_features>
+                        <pin_feature name="direction" value="INPUT"/>
+                     </pin_features>
+                  </pin>
+                  <pin peripheral="PORTB" signal="port, 12" pin_num="68" pin_signal="PTB12">
+                     <pin_features>
+                        <pin_feature name="direction" value="OUTPUT"/>
+                     </pin_features>
+                  </pin>
+                  <pin peripheral="PORTD" signal="port, 4" pin_num="69" pin_signal="PTD4">
                      <pin_features>
                         <pin_feature name="direction" value="OUTPUT"/>
                      </pin_features>
@@ -62,6 +106,10 @@
          </functions_list>
       </pins>
       <clocks name="Clocks" version="7.0" enabled="true" update_project_code="true">
+         <generated_project_files>
+            <file path="board/clock_config.c" update_enabled="true"/>
+            <file path="board/clock_config.h" update_enabled="true"/>
+         </generated_project_files>
          <clocks_profile>
             <processor_version>0.0.0</processor_version>
          </clocks_profile>
@@ -208,20 +256,24 @@
          </clock_configurations>
       </clocks>
       <ddr name="DDR" version="1.0" enabled="false" update_project_code="true">
+         <generated_project_files/>
          <components/>
       </ddr>
       <dcd name="DCD" version="1.0" enabled="false" update_project_code="true" isSelfTest="false">
+         <generated_project_files/>
          <dcdx_profile>
             <processor_version>N/A</processor_version>
          </dcdx_profile>
          <dcdx_configurations/>
       </dcd>
       <ivt name="IVT" version="1.0" enabled="false" update_project_code="true">
+         <generated_project_files/>
          <ivt_profile>
             <processor_version>N/A</processor_version>
          </ivt_profile>
       </ivt>
       <quadspi name="QuadSPI" version="1.0" enabled="false" update_project_code="true">
+         <generated_project_files/>
          <quadspi_profile>
             <processor_version>N/A</processor_version>
          </quadspi_profile>
@@ -239,6 +291,12 @@
                </feature>
             </dependency>
          </dependencies>
+         <generated_project_files>
+            <file path="board/FreeRTOSConfig.h" update_enabled="true"/>
+            <file path="board/peripherals_FreeRTOS.c" update_enabled="true"/>
+            <file path="board/peripherals_FreeRTOS.h" update_enabled="true"/>
+            <file path="board/sdk_project_config.h" update_enabled="true"/>
+         </generated_project_files>
          <peripherals_profile>
             <processor_version>0.0.0</processor_version>
          </peripherals_profile>
