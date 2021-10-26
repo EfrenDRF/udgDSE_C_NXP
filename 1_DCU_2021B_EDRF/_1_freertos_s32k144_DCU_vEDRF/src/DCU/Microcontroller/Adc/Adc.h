@@ -12,7 +12,7 @@
 void Adc_Init(void);
 
 //100 ms
-void Adc_Run(void);
+extern void Adc_Run(void);
 
 typedef uint16 ADC_VALUE;
 

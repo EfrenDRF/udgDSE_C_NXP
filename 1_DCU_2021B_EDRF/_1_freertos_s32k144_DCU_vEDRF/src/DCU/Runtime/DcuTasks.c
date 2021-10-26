@@ -130,6 +130,7 @@ static void app_task_10ms( void *pvParameters )
  * ========================================================================= */
 static void app_task_100ms( void *pvParameters )
 {
+	static PIN_VALUE toogleVal = DIO_LOW;
 	TickType_t xNextWakeTime;
 
 	/* Casting pvParameters to void because it is unused */
@@ -141,7 +142,19 @@ static void app_task_100ms( void *pvParameters )
 	for( ;; )
 	{
 
-		(void) PINS_DRV_TogglePins( RED_LED_PORT, (1u << RED_LED_PIN ) );
+		Adc_Run();
+		
+
+		if (Adc_Get_AntiPinch_Value() >= 500ul)
+		{
+			toogleVal ^= DIO_HIGH;
+			Dio_Write_DoorUnlock_Led(toogleVal);
+		}
+		else
+		{
+			toogleVal = DIO_LOW;
+			Dio_Write_DoorUnlock_Led(toogleVal);
+		}
 
 		/* Place this task in the blocked state until it is time to run again.
 		The block time is specified in ticks, the constant used converts ticks

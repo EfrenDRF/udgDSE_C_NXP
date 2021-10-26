@@ -7,7 +7,6 @@
 
 #include "BasicTypes.h"
 #include "Dio.h"
-
 #include "sdk_project_config.h"
 
 /*Local Macro_________________________________________________________________________*/
