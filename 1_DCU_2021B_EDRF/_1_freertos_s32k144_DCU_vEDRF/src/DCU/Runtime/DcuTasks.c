@@ -29,7 +29,7 @@
 
 /*Local Macro__________________________________________________________________*/
 #define app_10ms_TASK_PRIORITY      ( tskIDLE_PRIORITY + 2u )
-#define	app_100ms_TASK_PRIORITY     ( tskIDLE_PRIORITY + 1u )
+#define    app_100ms_TASK_PRIORITY     ( tskIDLE_PRIORITY + 1u )
 
 /* Local Function Prototypes */
 static void Tasks_StartOS(void);
@@ -46,36 +46,36 @@ static void app_task_100ms( void *pvParameters );
  * ========================================================================= */
 void app_task_200ms( void *pvParameters )
 {
-	TickType_t xNextWakeTime;
+    TickType_t xNextWakeTime;
 
-	/* Casting pvParameters to void because it is unused */
-	(void)pvParameters;
+    /* Casting pvParameters to void because it is unused */
+    (void)pvParameters;
 
-	/* Initialize xNextWakeTime - this only needs to be done once. */
-	xNextWakeTime = xTaskGetTickCount();
+    /* Initialize xNextWakeTime - this only needs to be done once. */
+    xNextWakeTime = xTaskGetTickCount();
 
-	for( ;; )
-	{
+    for( ;; )
+    {
 
-		/* Place this task in the blocked state until it is time to run again.
-		The block time is specified in ticks, the constant used converts ticks
-		to ms.  While in the Blocked state this task will not consume any CPU
-		time. */
-		vTaskDelayUntil( &xNextWakeTime, 200 );
+        /* Place this task in the blocked state until it is time to run again.
+        The block time is specified in ticks, the constant used converts ticks
+        to ms.  While in the Blocked state this task will not consume any CPU
+        time. */
+        vTaskDelayUntil( &xNextWakeTime, 200 );
 
-	}
+    }
 }
 # endif
 
 static void Tasks_StartOS(void)
 {
-	(void) xTaskCreate(app_task_10ms,     "App10ms",      configMINIMAL_STACK_SIZE, NULL,  app_10ms_TASK_PRIORITY,  NULL);
-	(void) xTaskCreate(app_task_100ms,    "App100ms",     configMINIMAL_STACK_SIZE, NULL,  app_100ms_TASK_PRIORITY, NULL);
+    (void) xTaskCreate(app_task_10ms,     "App10ms",      configMINIMAL_STACK_SIZE, NULL,  app_10ms_TASK_PRIORITY,  NULL);
+    (void) xTaskCreate(app_task_100ms,    "App100ms",     configMINIMAL_STACK_SIZE, NULL,  app_100ms_TASK_PRIORITY, NULL);
 
-	Mpu_Init();
+    Mpu_Init();
 
-	/* Start the tasks and timer running. */
-	vTaskStartScheduler();
+    /* Start the tasks and timer running. */
+    vTaskStartScheduler();
 }
 
 void init_hook(void)
@@ -83,13 +83,13 @@ void init_hook(void)
 
     Mcu_Init();
 
-	Wdg_Init();
+    Wdg_Init();
 
     Dio_Init();
 
     Adc_Init();
 
-	Tasks_StartOS();
+    Tasks_StartOS();
 }
 
 
@@ -101,25 +101,25 @@ void init_hook(void)
  * ========================================================================= */
 static void app_task_10ms( void *pvParameters )
 {
-	TickType_t xNextWakeTime;
+    TickType_t xNextWakeTime;
 
-	/* Casting pvParameters to void because it is unused */
-	(void)pvParameters;
+    /* Casting pvParameters to void because it is unused */
+    (void)pvParameters;
 
-	/* Initialize xNextWakeTime - this only needs to be done once. */
-	xNextWakeTime = xTaskGetTickCount();
+    /* Initialize xNextWakeTime - this only needs to be done once. */
+    xNextWakeTime = xTaskGetTickCount();
 
-	for( ;; )
-	{
-		///PINS_DRV_TogglePins(GREEN_LED_PORT, GREEN_LED_PIN);
+    for( ;; )
+    {
+        ///PINS_DRV_TogglePins(GREEN_LED_PORT, GREEN_LED_PIN);
 
-		/* Place this task in the blocked state until it is time to run again.
-		The block time is specified in ticks, the constant used converts ticks
-		to ms.  While in the Blocked state this task will not consume any CPU
-		time. */
-		vTaskDelayUntil( &xNextWakeTime, pdMS_TO_TICKS( 10u ) );
+        /* Place this task in the blocked state until it is time to run again.
+        The block time is specified in ticks, the constant used converts ticks
+        to ms.  While in the Blocked state this task will not consume any CPU
+        time. */
+        vTaskDelayUntil( &xNextWakeTime, pdMS_TO_TICKS( 10u ) );
 
-	}
+    }
 }
 
 /* ============================================================================
@@ -130,37 +130,37 @@ static void app_task_10ms( void *pvParameters )
  * ========================================================================= */
 static void app_task_100ms( void *pvParameters )
 {
-	static PIN_VALUE toogleVal = DIO_LOW;
-	TickType_t xNextWakeTime;
+    static PIN_VALUE toogleVal = DIO_LOW;
+    TickType_t xNextWakeTime;
 
-	/* Casting pvParameters to void because it is unused */
-	(void)pvParameters;
+    /* Casting pvParameters to void because it is unused */
+    (void)pvParameters;
 
-	/* Initialize xNextWakeTime - this only needs to be done once. */
-	xNextWakeTime = xTaskGetTickCount();
+    /* Initialize xNextWakeTime - this only needs to be done once. */
+    xNextWakeTime = xTaskGetTickCount();
 
-	for( ;; )
-	{
+    for( ;; )
+    {
 
-		Adc_Run();
-		
+        Adc_Run();
+        
 
-		if (Adc_Get_AntiPinch_Value() >= 500ul)
-		{
-			toogleVal ^= DIO_HIGH;
-			Dio_Write_DoorUnlock_Led(toogleVal);
-		}
-		else
-		{
-			toogleVal = DIO_LOW;
-			Dio_Write_DoorUnlock_Led(toogleVal);
-		}
+        if (Adc_Get_AntiPinch_Value() >= 500ul)
+        {
+            toogleVal ^= DIO_HIGH;
+            Dio_Write_DoorUnlock_Led(toogleVal);
+        }
+        else
+        {
+            toogleVal = DIO_LOW;
+            Dio_Write_DoorUnlock_Led(toogleVal);
+        }
 
-		/* Place this task in the blocked state until it is time to run again.
-		The block time is specified in ticks, the constant used converts ticks
-		to ms.  While in the Blocked state this task will not consume any CPU
-		time. */
-		vTaskDelayUntil( &xNextWakeTime, pdMS_TO_TICKS( 100u ) );
+        /* Place this task in the blocked state until it is time to run again.
+        The block time is specified in ticks, the constant used converts ticks
+        to ms.  While in the Blocked state this task will not consume any CPU
+        time. */
+        vTaskDelayUntil( &xNextWakeTime, pdMS_TO_TICKS( 100u ) );
 
-	}
+    }
 }
