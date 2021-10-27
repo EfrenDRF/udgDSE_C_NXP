@@ -29,7 +29,9 @@
 
 /*Local Macro__________________________________________________________________*/
 #define app_10ms_TASK_PRIORITY      ( tskIDLE_PRIORITY + 2u )
-#define    app_100ms_TASK_PRIORITY     ( tskIDLE_PRIORITY + 1u )
+#define app_100ms_TASK_PRIORITY     ( tskIDLE_PRIORITY + 1u )
+
+#define ANTIPINCH_LIMIT             (500UL)
 
 /* Local Function Prototypes */
 static void Tasks_StartOS(void);
@@ -144,7 +146,7 @@ static void app_task_100ms( void *pvParameters )
 
         Adc_Run();
         
-        if (Adc_Get_AntiPinch_Value() >= 500ul)
+        if (Adc_Get_AntiPinch_Value() >= ANTIPINCH_LIMIT)
         {
             toogleVal ^= DIO_HIGH;
             Dio_Write_DoorUnlock_Led(toogleVal);

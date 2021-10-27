@@ -13,28 +13,21 @@ ASIL_A_VAR_NOINIT static ADC_VALUE  Adc_AntiPinch;
 
 void Adc_Init(void)
 {
-# if(0)
-    status_t status;
+    status_t adc_status;
 
-    status = ADC_Init(&adc_pal_1_instance, &adc_pal_1_cfg);
+    adc_status = ADC_Init(&adc_pal_1_instance, &adc_pal_1_config);
+    DEV_ASSERT(adc_status == STATUS_SUCCESS);
 
-    if (status != STATUS_SUCESS)
-    {
-        //@TODO
-    }
-    status = ADC_StartGroupConversions(&adc_pal_1_instance, 0x00u);
+    adc_status = ADC_StartGroupConversion(&adc_pal_1_instance, 0x00u);
+    DEV_ASSERT(adc_status == STATUS_SUCCESS);
     
-# endif
     Adc_AntiPinch = ADC_MIN;
 }
 
 //100 ms
 void Adc_Run(void)
 {
-# if(0)
     Adc_AntiPinch = adc_pal_1_results0[0];
-# endif
-    Adc_AntiPinch = ADC_MAX;
 }
 
 
