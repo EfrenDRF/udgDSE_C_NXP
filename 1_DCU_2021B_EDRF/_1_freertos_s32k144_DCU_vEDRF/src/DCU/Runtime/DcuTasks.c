@@ -144,7 +144,6 @@ static void app_task_100ms( void *pvParameters )
 
         Adc_Run();
         
-
         if (Adc_Get_AntiPinch_Value() >= 500ul)
         {
             toogleVal ^= DIO_HIGH;

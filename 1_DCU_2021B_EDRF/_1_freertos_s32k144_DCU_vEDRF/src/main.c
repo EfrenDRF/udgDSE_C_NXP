@@ -33,6 +33,4 @@ int main(void)
 #   endif
 
 	init_hook();
-
-	//d = 1
 }

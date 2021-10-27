@@ -20,13 +20,13 @@ static PIN_VALUE xDio_Get_WindowLED(PIN_VALUES windowLED, PIN_VALUES values)
     return pinValue;
 }
 
-static PIN_VALUE xDio_Read_Pin(const GPIO_Type * const portPtr, uint8_t pin)
+static PIN_VALUE xDio_Read_Pin(const GPIO_Type * const base, pins_channel_type_t pin)
 {
     PIN_VALUE pinValue = DIO_LOW;
     uint16_t portValue = 0x0000UL;
 
-    portValue = PINS_DRV_ReadPins(portPtr);
-    pinValue = ((portValue & (1u << pin)) != 0x000u)? DIO_HIGH : DIO_LOW;
+    portValue = PINS_DRV_ReadPins(base);
+    pinValue = ((portValue & (1u << pin)) != 0x0000u)? DIO_HIGH : DIO_LOW;
 
     return pinValue;
 }
@@ -35,6 +35,10 @@ void Dio_Init(void)
 {
     /* Init IO HAL */
     PINS_DRV_Init( NUM_OF_CONFIGURED_PINS0, g_pin_mux_InitConfigArr0 );
+
+    Dio_Write_DoorUnlock_Led( DIO_HIGH );
+    Dio_Write_DoorLock_Led( DIO_HIGH );
+    Dio_Write_Window_Leds((PIN_VALUES) DIO_HIGH );
 }
 
 void Dio_Write_DoorUnlock_Led(PIN_VALUE value)
@@ -63,7 +67,7 @@ void Dio_Write_Window_Leds(PIN_VALUES values)
 
 PIN_VALUE Dio_Read_DoorUnlock(void)
 {
-    return xDio_Read_Pin(DOOR_UNLOCKED_PORT, DOOR_UNLOCKED_PIN);
+    return xDio_Read_Pin(SW_DOOR_UNLOCKED_PORT, SW_DOOR_UNLOCKED_PIN);
 }
 
 PIN_VALUE Dio_Read_DoorLock(void)
@@ -73,11 +77,11 @@ PIN_VALUE Dio_Read_DoorLock(void)
 
 PIN_VALUE Dio_Read_Window_Open(void)
 {
-    return xDio_Read_Pin(SW_WINDOW_OPEN_PORT), SW_WINDOW_OPEN_PIN);
+    return xDio_Read_Pin(SW_WINDOW_OPEN_PORT, SW_WINDOW_OPEN_PIN);
 }
 
 PIN_VALUE Dio_Read_Window_Closed(void)
-{    
+{
     return xDio_Read_Pin(SW_WINDOW_CLOSE_PORT, SW_WINDOW_CLOSE_PIN);
 }
 
