@@ -28,7 +28,8 @@
 #include "DcuTasks.h"
 
 /*Local Macro__________________________________________________________________*/
-#define app_10ms_TASK_PRIORITY      ( tskIDLE_PRIORITY + 2u )
+#define app_10ms_TASK_PRIORITY      ( tskIDLE_PRIORITY + 3u )
+#define app_20ms_TASK_PRIORITY      ( tskIDLE_PRIORITY + 2u )
 #define app_100ms_TASK_PRIORITY     ( tskIDLE_PRIORITY + 1u )
 
 #define ANTIPINCH_LIMIT             (500UL)
@@ -37,42 +38,14 @@
 static void Tasks_StartOS(void);
 
 static void app_task_10ms( void *pvParameters );
+static void app_task_20ms( void *pvParameters );
 static void app_task_100ms( void *pvParameters );
-
-# if( 0 )
-/* ============================================================================
- * Function Name:
- * Description:
- * Arguments:
- * Return:
- * ========================================================================= */
-void app_task_200ms( void *pvParameters )
-{
-    TickType_t xNextWakeTime;
-
-    /* Casting pvParameters to void because it is unused */
-    (void)pvParameters;
-
-    /* Initialize xNextWakeTime - this only needs to be done once. */
-    xNextWakeTime = xTaskGetTickCount();
-
-    for( ;; )
-    {
-
-        /* Place this task in the blocked state until it is time to run again.
-        The block time is specified in ticks, the constant used converts ticks
-        to ms.  While in the Blocked state this task will not consume any CPU
-        time. */
-        vTaskDelayUntil( &xNextWakeTime, 200 );
-
-    }
-}
-# endif
 
 static void Tasks_StartOS(void)
 {
-    (void) xTaskCreate(app_task_10ms,     "App10ms",      configMINIMAL_STACK_SIZE, NULL,  app_10ms_TASK_PRIORITY,  NULL);
-    (void) xTaskCreate(app_task_100ms,    "App100ms",     configMINIMAL_STACK_SIZE, NULL,  app_100ms_TASK_PRIORITY, NULL);
+    (void) xTaskCreate(app_task_10ms,  "app10ms",  configMINIMAL_STACK_SIZE, NULL, app_10ms_TASK_PRIORITY,  NULL);
+    (void) xTaskCreate(app_task_20ms,  "app20ms",  configMINIMAL_STACK_SIZE, NULL, app_20ms_TASK_PRIORITY,  NULL);
+    (void) xTaskCreate(app_task_100ms, "app100ms", configMINIMAL_STACK_SIZE, NULL, app_100ms_TASK_PRIORITY, NULL);
 
     Mpu_Init();
 
@@ -120,6 +93,34 @@ static void app_task_10ms( void *pvParameters )
         to ms.  While in the Blocked state this task will not consume any CPU
         time. */
         vTaskDelayUntil( &xNextWakeTime, pdMS_TO_TICKS( 10u ) );
+
+    }
+}
+
+/* ============================================================================
+ * Function Name:
+ * Description:
+ * Arguments:
+ * Return:
+ * ========================================================================= */
+void app_task_20ms( void *pvParameters )
+{
+    TickType_t xNextWakeTime;
+
+    /* Casting pvParameters to void because it is unused */
+    (void)pvParameters;
+
+    /* Initialize xNextWakeTime - this only needs to be done once. */
+    xNextWakeTime = xTaskGetTickCount();
+
+    for( ;; )
+    {
+
+        /* Place this task in the blocked state until it is time to run again.
+        The block time is specified in ticks, the constant used converts ticks
+        to ms.  While in the Blocked state this task will not consume any CPU
+        time. */
+        vTaskDelayUntil( &xNextWakeTime, pdMS_TO_TICKS( 20u ) );
 
     }
 }
