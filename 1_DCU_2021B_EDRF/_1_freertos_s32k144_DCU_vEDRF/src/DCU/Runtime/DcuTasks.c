@@ -153,7 +153,7 @@ static void app_task_100ms( void *pvParameters )
         }
         else
         {
-            toogleVal = DIO_LOW;
+            toogleVal = DIO_HIGH;
             Dio_Write_DoorUnlock_Led(toogleVal);
         }
 
