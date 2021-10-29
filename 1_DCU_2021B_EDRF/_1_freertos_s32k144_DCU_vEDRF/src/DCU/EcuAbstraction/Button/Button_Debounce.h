@@ -51,7 +51,7 @@ typedef struct
 
 
 /*Global Function Def_______________________________________________________*/
-extern void ButtonDeb_StateMachine( const ButtonDeb_varData_t * xButtonDeb_varPtr,
+extern void ButtonDeb_StateMachine( ButtonDeb_varData_t * const xButtonDeb_varPtr,
                                     const ButtonDeb_cfgData_t * const xButtonDeb_cfgPtr);
 
 #endif /* DCU_ECUABSTRACTION_BUTTON_BUTTON_DEBOUNCE_H_ */

@@ -6,6 +6,8 @@
  */
 
 
+
+#include "sdk_project_config.h"
 #include "Button_Debounce.h"
 
 
@@ -21,7 +23,7 @@
  * Arguments:
  * Return:
  * ========================================================================= */
-void ButtonDeb_StateMachine( const ButtonDeb_varData_t * xButtonDeb_varPtr,
+void ButtonDeb_StateMachine( ButtonDeb_varData_t * const xButtonDeb_varPtr,
                                     const ButtonDeb_cfgData_t * const xButtonDeb_cfgPtr)
 {
     PIN_VALUE inputState = BUTTON_NOT_PRESSENT;

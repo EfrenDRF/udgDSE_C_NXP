@@ -32,4 +32,4 @@ const ButtonDeb_cfgData_t xButtonCfg_table[BUTTON_CFG_TABLE_LEN] =
  /* 11 */ {.debThreshold1 = THRESHOLD1, .debThreshold2 = THRESHOLD2,.Dio_ReadFunc = Dio_Read_RearRightWindowOpen_Button   },
  /* 12 */ {.debThreshold1 = THRESHOLD1, .debThreshold2 = THRESHOLD2,.Dio_ReadFunc = Dio_Read_RearRightWindowClose_Button  },
  /* 13 */ {.debThreshold1 = THRESHOLD1, .debThreshold2 = THRESHOLD2,.Dio_ReadFunc = Dio_Read_RearWindowLock_Button        } 
-}
+};

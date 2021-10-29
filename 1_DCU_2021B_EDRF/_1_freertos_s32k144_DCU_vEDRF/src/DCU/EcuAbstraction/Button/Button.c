@@ -5,7 +5,7 @@
  *      Author: uid87544
  */
 
-
+#include <string.h>
 #include "BasicTypes.h"
 #include "Dio.h"
 #include "HwConfig.h"
@@ -214,5 +214,4 @@ static BUTTON_STATUS Button_GetStatus(uint8 index)
 
 	return ret_val;
 }
-
 
