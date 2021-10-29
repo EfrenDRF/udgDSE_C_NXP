@@ -26,56 +26,6 @@
 	</natures>
 	<linkedResources>
 		<link>
-			<name>Project_Settings/Linker_Files/S32K144_64_flash.ld</name>
-			<type>1</type>
-			<locationURI>$%7BS32K144_SDK_4_0_2_PATH%7D/platform/devices/S32K144/linker/gcc/S32K144_64_flash.ld</locationURI>
-		</link>
-		<link>
-			<name>Project_Settings/Linker_Files/S32K144_64_ram.ld</name>
-			<type>1</type>
-			<locationURI>$%7BS32K144_SDK_4_0_2_PATH%7D/platform/devices/S32K144/linker/gcc/S32K144_64_ram.ld</locationURI>
-		</link>
-		<link>
-			<name>Project_Settings/Startup_Code/startup_S32K144.S</name>
-			<type>1</type>
-			<locationURI>$%7BS32K144_SDK_4_0_2_PATH%7D/platform/devices/S32K144/startup/gcc/startup_S32K144.S</locationURI>
-		</link>
-		<link>
-			<name>SDK/platform/devices/callbacks.h</name>
-			<type>1</type>
-			<locationURI>$%7BS32K144_SDK_4_0_2_PATH%7D/platform/devices/callbacks.h</locationURI>
-		</link>
-		<link>
-			<name>SDK/platform/devices/devassert.h</name>
-			<type>1</type>
-			<locationURI>$%7BS32K144_SDK_4_0_2_PATH%7D/platform/devices/devassert.h</locationURI>
-		</link>
-		<link>
-			<name>SDK/platform/devices/device_registers.h</name>
-			<type>1</type>
-			<locationURI>$%7BS32K144_SDK_4_0_2_PATH%7D/platform/devices/device_registers.h</locationURI>
-		</link>
-		<link>
-			<name>SDK/platform/devices/startup.c</name>
-			<type>1</type>
-			<locationURI>$%7BS32K144_SDK_4_0_2_PATH%7D/platform/devices/startup.c</locationURI>
-		</link>
-		<link>
-			<name>SDK/platform/devices/startup.h</name>
-			<type>1</type>
-			<locationURI>$%7BS32K144_SDK_4_0_2_PATH%7D/platform/devices/startup.h</locationURI>
-		</link>
-		<link>
-			<name>SDK/platform/devices/status.h</name>
-			<type>1</type>
-			<locationURI>$%7BS32K144_SDK_4_0_2_PATH%7D/platform/devices/status.h</locationURI>
-		</link>
-		<link>
-			<name>SDK/platform/devices/common/s32_core_cm4.h</name>
-			<type>1</type>
-			<locationURI>$%7BS32K144_SDK_4_0_2_PATH%7D/platform/devices/common/s32_core_cm4.h</locationURI>
-		</link>
-		<link>
 			<name>SDK/platform/drivers/inc/clock_manager.h</name>
 			<type>1</type>
 			<locationURI>$%7BS32K144_SDK_4_0_2_PATH%7D/platform/drivers/inc/clock_manager.h</locationURI>
@@ -84,26 +34,6 @@
 			<name>doc/SDK/rtos/doxygen/freeRTOS.dox</name>
 			<type>1</type>
 			<locationURI>s32sdk_s32k1xx_rtm_402/rtos/doxygen/freeRTOS.dox</locationURI>
-		</link>
-		<link>
-			<name>SDK/platform/devices/S32K144/include/S32K144.h</name>
-			<type>1</type>
-			<locationURI>$%7BS32K144_SDK_4_0_2_PATH%7D/platform/devices/S32K144/include/S32K144.h</locationURI>
-		</link>
-		<link>
-			<name>SDK/platform/devices/S32K144/include/S32K144_features.h</name>
-			<type>1</type>
-			<locationURI>$%7BS32K144_SDK_4_0_2_PATH%7D/platform/devices/S32K144/include/S32K144_features.h</locationURI>
-		</link>
-		<link>
-			<name>SDK/platform/devices/S32K144/startup/system_S32K144.c</name>
-			<type>1</type>
-			<locationURI>$%7BS32K144_SDK_4_0_2_PATH%7D/platform/devices/S32K144/startup/system_S32K144.c</locationURI>
-		</link>
-		<link>
-			<name>SDK/platform/devices/S32K144/startup/system_S32K144.h</name>
-			<type>1</type>
-			<locationURI>$%7BS32K144_SDK_4_0_2_PATH%7D/platform/devices/S32K144/startup/system_S32K144.h</locationURI>
 		</link>
 		<link>
 			<name>doc/SDK/rtos/osif/doxygen/osif.dox</name>
@@ -119,6 +49,16 @@
 			<name>doc/SDK/platform/drivers/src/clock/doxygen/clock_manager.dox</name>
 			<type>1</type>
 			<locationURI>s32sdk_s32k1xx_rtm_402/platform/drivers/src/clock/doxygen/clock_manager.dox</locationURI>
+		</link>
+		<link>
+			<name>doc/SDK/platform/drivers/src/edma/doxygen/edma_driver.dox</name>
+			<type>1</type>
+			<locationURI>s32sdk_s32k1xx_rtm_402/platform/drivers/src/edma/doxygen/edma_driver.dox</locationURI>
+		</link>
+		<link>
+			<name>doc/SDK/platform/drivers/src/flexcan/doxygen/flexcan_driver.dox</name>
+			<type>1</type>
+			<locationURI>s32sdk_s32k1xx_rtm_402/platform/drivers/src/flexcan/doxygen/flexcan_driver.dox</locationURI>
 		</link>
 		<link>
 			<name>doc/SDK/platform/drivers/src/interrupt/doxygen/interrupt.dox</name>
@@ -149,6 +89,11 @@
 			<name>doc/SDK/platform/pal/src/adc/doxygen/adc_pal.dox</name>
 			<type>1</type>
 			<locationURI>s32sdk_s32k1xx_rtm_402/platform/pal/src/adc/doxygen/adc_pal.dox</locationURI>
+		</link>
+		<link>
+			<name>doc/SDK/platform/pal/src/can/doxygen/can_pal.dox</name>
+			<type>1</type>
+			<locationURI>s32sdk_s32k1xx_rtm_402/platform/pal/src/can/doxygen/can_pal.dox</locationURI>
 		</link>
 		<link>
 			<name>doc/SDK/platform/drivers/src/clock/S32K1xx/doxygen/clock_S32K1xx.dox</name>
