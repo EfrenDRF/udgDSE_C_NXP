@@ -25,6 +25,7 @@
 #include "Mpu.h"
 #include "Adc.h"
 #include "Dio.h"
+#include "HwConfig.h"
 #include "DcuTasks.h"
 
 /*Local Macro__________________________________________________________________*/
@@ -55,7 +56,6 @@ static void Tasks_StartOS(void)
 
 void init_hook(void)
 {
-
     Mcu_Init();
 
     Wdg_Init();
@@ -63,6 +63,10 @@ void init_hook(void)
     Dio_Init();
 
     Adc_Init();
+    
+    HwConfig_Init();
+
+    Button_Init();
 
     Tasks_StartOS();
 }
@@ -86,7 +90,7 @@ static void app_task_10ms( void *pvParameters )
 
     for( ;; )
     {
-        ///PINS_DRV_TogglePins(GREEN_LED_PORT, GREEN_LED_PIN);
+        Button_Run();
 
         /* Place this task in the blocked state until it is time to run again.
         The block time is specified in ticks, the constant used converts ticks
