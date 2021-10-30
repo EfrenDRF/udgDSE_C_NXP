@@ -179,6 +179,17 @@ BUTTON_STATUS Button_Get_RearWindow_Lock(void)  //switch
 }
 
 /* ============================================================================
+ * Function Name: Button_CleanStatus
+ * Description:
+ * Arguments:
+ * Return:
+ * ========================================================================= */
+void Button_CleanStatus(uint8 index)
+{
+    xButtonVar_table[index].debEvent = eUNKNOWN;
+}
+
+/* ============================================================================
  * Function Name: Button_GetStatus
  * Description:
  * Arguments:
@@ -194,18 +205,22 @@ static BUTTON_STATUS Button_GetStatus(uint8 index)
         {
 			ret_val = BUTTON_PRESSED;
         }break;
+# if(0)
         case eRELEACED_ACT1:
         {
 			ret_val = BUTTON_PRESSED;
         }break;
+# endif
         case eREACHED_ACT2:
         {
 			ret_val = BUTTON_LONG_PRESSED;
         }break;
+# if(0)
         case eRELEACED_ACT2:
         {
 			ret_val = BUTTON_LONG_PRESSED;
         }break;	
+# endif
         default:
 		{
 			/* Avoid MISRA - No action required*/

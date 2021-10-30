@@ -18,6 +18,7 @@
 #include "Window.h"
 #include "Door.h"
 #include "Button.h"
+#include "Button_Cfg.h"
 #include "DoorApp.h"
 #include "WindowApp.h"
 #include "Wdg.h"
@@ -164,6 +165,7 @@ static void app_task_100ms( void *pvParameters )
 
             if(BUTTON_PRESSED == buttonVal )
             {
+                Button_CleanStatus(BUTTON_CFG_CLOSE_BTN_IDX);
                 toogleVal ^= DIO_HIGH; 
             }
             Dio_Write_DoorUnlock_Led( DIO_HIGH );

@@ -52,6 +52,7 @@ BUTTON_STATUS  Button_Get_RearRightWindow_Close(void);
 //driver
 BUTTON_STATUS  Button_Get_RearWindow_Lock(void);
 
+extern void Button_CleanStatus(uint8 index);
 
 
 #endif /* ECUABSTRACTION_BUTTONDRIVER_H_ */
