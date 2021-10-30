@@ -58,7 +58,7 @@ void Button_Run(void)
  * ========================================================================= */
 BUTTON_STATUS Button_Get_Door_Lock(void)
 {
-    return Button_GetStatus(BUTTON_CFG_SW_DOOR_LOCKED_IDX);
+    return Button_GetStatus(BUTTON_CFG_LOCK_BTN_IDX);
 }
 
 /* ============================================================================
@@ -69,7 +69,7 @@ BUTTON_STATUS Button_Get_Door_Lock(void)
  * ========================================================================= */
 BUTTON_STATUS Button_Get_Door_Unlock(void)
 {
-	return Button_GetStatus(BUTTON_CFG_SW_DOOR_UNLOCKED_IDX);
+	return Button_GetStatus(BUTTON_CFG_UNLOCK_BTN_IDX);
 }
 
 /* ============================================================================
@@ -80,7 +80,7 @@ BUTTON_STATUS Button_Get_Door_Unlock(void)
  * ========================================================================= */
 BUTTON_STATUS Button_Get_Window_Open(void)
 {
-	return Button_GetStatus(BUTTON_CFG_SW_WINDOW_OPEN_IDX);
+	return Button_GetStatus(BUTTON_CFG_OPEN_BTN_IDX);
 }
 
 /* ============================================================================
@@ -91,7 +91,7 @@ BUTTON_STATUS Button_Get_Window_Open(void)
  * ========================================================================= */
 BUTTON_STATUS Button_Get_Window_Close(void)
 {
-	return Button_GetStatus(BUTTON_CFG_SW_WINDOW_CLOSE_IDX);
+	return Button_GetStatus(BUTTON_CFG_CLOSE_BTN_IDX);
 }
 
 //driver
