@@ -137,7 +137,8 @@ void app_task_20ms( void *pvParameters )
  * ========================================================================= */
 static void app_task_100ms( void *pvParameters )
 {
-    static PIN_VALUE toogleVal = DIO_LOW;
+    static PIN_VALUE      toogleVal = DIO_LOW;
+    static BUTTON_STATUS  buttonVal = BUTTON_NOT_PRESSED;
     TickType_t xNextWakeTime;
 
     /* Casting pvParameters to void because it is unused */
@@ -155,11 +156,18 @@ static void app_task_100ms( void *pvParameters )
         {
             toogleVal ^= DIO_HIGH;
             Dio_Write_DoorUnlock_Led(toogleVal);
+            Dio_Write_DoorLock_Led(DIO_HIGH);
         }
         else
         {
-            toogleVal = DIO_HIGH;
-            Dio_Write_DoorUnlock_Led(toogleVal);
+            buttonVal = Button_Get_Window_Close();
+
+            if(BUTTON_PRESSED == buttonVal )
+            {
+                toogleVal ^= DIO_HIGH; 
+            }
+            Dio_Write_DoorUnlock_Led( DIO_HIGH );
+            Dio_Write_DoorLock_Led(toogleVal);
         }
 
         /* Place this task in the blocked state until it is time to run again.
