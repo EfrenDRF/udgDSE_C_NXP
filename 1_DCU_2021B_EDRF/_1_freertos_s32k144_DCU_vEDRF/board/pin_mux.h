@@ -29,14 +29,8 @@ extern "C" {
 #define ANTIPINCH_SIGNAL_PIN     14U
 #define GREEN_LED_PORT    PTD
 #define GREEN_LED_PIN     16U
-#define PASSENGER_OPEN_BTN_PORT    PTB
-#define PASSENGER_OPEN_BTN_PIN     6U
-#define PASSENGER_CLOSE_BTN_PORT    PTB
-#define PASSENGER_CLOSE_BTN_PIN     7U
 #define REARRIGHT_OPEN_BTN_PORT    PTC
 #define REARRIGHT_OPEN_BTN_PIN     5U
-#define REARRIGHT_CLOSE_BTN_PORT    PTC
-#define REARRIGHT_CLOSE_BTN_PIN     4U
 #define REAR_WINDOW_LOCK_BTN_PORT    PTC
 #define REAR_WINDOW_LOCK_BTN_PIN     17U
 #define WINDOW_LED2_PORT    PTB
@@ -65,10 +59,6 @@ extern "C" {
 #define WINDOW_LED8_PIN     6U
 #define WINDOW_LED9_PORT    PTA
 #define WINDOW_LED9_PIN     15U
-#define WINDOW_LED10_PORT    PTE
-#define WINDOW_LED10_PIN     16U
-#define UNLOCK_BTN_PORT    PTA
-#define UNLOCK_BTN_PIN     4U
 #define LOCK_BTN_PORT    PTA
 #define LOCK_BTN_PIN     10U
 #define JUMPER1_PORT    PTD
@@ -83,6 +73,16 @@ extern "C" {
 #define SW_DOOR_LOCKED_PIN     2U
 #define SW_DOOR_UNLOCKED_PORT    PTD
 #define SW_DOOR_UNLOCKED_PIN     0U
+#define WINDOW_LED10_PORT    PTA
+#define WINDOW_LED10_PIN     16U
+#define UNLOCK_BTN_PORT    PTB
+#define UNLOCK_BTN_PIN     17U
+#define PASSENGER_OPEN_BTN_PORT    PTB
+#define PASSENGER_OPEN_BTN_PIN     14U
+#define PASSENGER_CLOSE_BTN_PORT    PTB
+#define PASSENGER_CLOSE_BTN_PIN     15U
+#define REARRIGHT_CLOSE_BTN_PORT    PTB
+#define REARRIGHT_CLOSE_BTN_PIN     16U
 /*! @brief User number of configured pins */
 #define NUM_OF_CONFIGURED_PINS0 30
 /*! @brief User configuration structure */

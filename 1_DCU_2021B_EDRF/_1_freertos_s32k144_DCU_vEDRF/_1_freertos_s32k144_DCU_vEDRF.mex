@@ -28,9 +28,6 @@
                <pin_label pin_num="46" pin_signal="PTC14" label="ANTIPINCH_SIGNAL" identifier="ANTIPINCH_SIGNAL"/>
                <pin_label pin_num="22" pin_signal="PTD15" label="RED_LED" identifier="RED_LED"/>
                <pin_label pin_num="21" pin_signal="PTD16" label="GREEN_LED" identifier="GREEN_LED"/>
-               <pin_label pin_num="16" pin_signal="PTB6" label="PASSENGER_OPEN_BTN" identifier="PASSENGER_OPEN_BTN"/>
-               <pin_label pin_num="15" pin_signal="PTB7" label="PASSENGER_CLOSE_BTN" identifier="PASSENGER_CLOSE_BTN"/>
-               <pin_label pin_num="96" pin_signal="PTC4" label="REARRIGHT_CLOSE_BTN" identifier="REARRIGHT_CLOSE_BTN"/>
                <pin_label pin_num="95" pin_signal="PTC5" label="REARRIGHT_OPEN_BTN" identifier="REARRIGHT_OPEN_BTN"/>
                <pin_label pin_num="43" pin_signal="PTC17" label="REAR_WINDOW_LOCK_BTN" identifier="REAR_WINDOW_LOCK_BTN"/>
                <pin_label pin_num="69" pin_signal="PTD4" label="WINDOW_LED1" identifier="WINDOW_LED1"/>
@@ -45,8 +42,6 @@
                <pin_label pin_num="85" pin_signal="PTE2" label="WINDOW_LED7" identifier="WINDOW_LED7"/>
                <pin_label pin_num="84" pin_signal="PTE6" label="WINDOW_LED8" identifier="WINDOW_LED8"/>
                <pin_label pin_num="83" pin_signal="PTA15" label="WINDOW_LED9" identifier="WINDOW_LED9"/>
-               <pin_label pin_num="1" pin_signal="PTE16" label="WINDOW_LED10" identifier="WINDOW_LED10"/>
-               <pin_label pin_num="98" pin_signal="PTA4" label="UNLOCK_BTN" identifier="UNLOCK_BTN"/>
                <pin_label pin_num="92" pin_signal="PTA10" label="LOCK_BTN" identifier="LOCK_BTN"/>
                <pin_label pin_num="70" pin_signal="PTD3" label="JUMPER0" identifier="JUMPER0"/>
                <pin_label pin_num="3" pin_signal="PTD1" label="JUMPER1" identifier="JUMPER1"/>
@@ -54,6 +49,11 @@
                <pin_label pin_num="32" pin_signal="PTD6" label="SW_WINDOW_OPEN" identifier="SW_WINDOW_OPEN"/>
                <pin_label pin_num="71" pin_signal="PTD2" label="SW_DOOR_LOCKED" identifier="SW_DOOR_LOCKED"/>
                <pin_label pin_num="4" pin_signal="PTD0" label="SW_DOOR_UNLOCKED" identifier="SW_DOOR_UNLOCKED"/>
+               <pin_label pin_num="82" pin_signal="PTA16" label="WINDOW_LED10" identifier="WINDOW_LED10"/>
+               <pin_label pin_num="63" pin_signal="PTB17" label="UNLOCK_BTN" identifier="UNLOCK_BTN"/>
+               <pin_label pin_num="66" pin_signal="PTB14" label="PASSENGER_OPEN_BTN" identifier="PASSENGER_OPEN_BTN"/>
+               <pin_label pin_num="65" pin_signal="PTB15" label="PASSENGER_CLOSE_BTN" identifier="PASSENGER_CLOSE_BTN"/>
+               <pin_label pin_num="64" pin_signal="PTB16" label="REARRIGHT_CLOSE_BTN" identifier="REARRIGHT_CLOSE_BTN"/>
             </pin_labels>
          </pins_profile>
          <functions_list>
@@ -76,22 +76,7 @@
                         <pin_feature name="direction" value="OUTPUT"/>
                      </pin_features>
                   </pin>
-                  <pin peripheral="PORTB" signal="port, 6" pin_num="16" pin_signal="PTB6">
-                     <pin_features>
-                        <pin_feature name="direction" value="INPUT"/>
-                     </pin_features>
-                  </pin>
-                  <pin peripheral="PORTB" signal="port, 7" pin_num="15" pin_signal="PTB7">
-                     <pin_features>
-                        <pin_feature name="direction" value="INPUT"/>
-                     </pin_features>
-                  </pin>
                   <pin peripheral="PORTC" signal="port, 5" pin_num="95" pin_signal="PTC5">
-                     <pin_features>
-                        <pin_feature name="direction" value="INPUT"/>
-                     </pin_features>
-                  </pin>
-                  <pin peripheral="PORTC" signal="port, 4" pin_num="96" pin_signal="PTC4">
                      <pin_features>
                         <pin_feature name="direction" value="INPUT"/>
                      </pin_features>
@@ -166,16 +151,6 @@
                         <pin_feature name="direction" value="OUTPUT"/>
                      </pin_features>
                   </pin>
-                  <pin peripheral="PORTE" signal="port, 16" pin_num="1" pin_signal="PTE16">
-                     <pin_features>
-                        <pin_feature name="direction" value="OUTPUT"/>
-                     </pin_features>
-                  </pin>
-                  <pin peripheral="PORTA" signal="port, 4" pin_num="98" pin_signal="PTA4">
-                     <pin_features>
-                        <pin_feature name="direction" value="INPUT"/>
-                     </pin_features>
-                  </pin>
                   <pin peripheral="PORTA" signal="port, 10" pin_num="92" pin_signal="PTA10">
                      <pin_features>
                         <pin_feature name="direction" value="INPUT"/>
@@ -207,6 +182,31 @@
                      </pin_features>
                   </pin>
                   <pin peripheral="PORTD" signal="port, 0" pin_num="4" pin_signal="PTD0">
+                     <pin_features>
+                        <pin_feature name="direction" value="INPUT"/>
+                     </pin_features>
+                  </pin>
+                  <pin peripheral="PORTA" signal="port, 16" pin_num="82" pin_signal="PTA16">
+                     <pin_features>
+                        <pin_feature name="direction" value="OUTPUT"/>
+                     </pin_features>
+                  </pin>
+                  <pin peripheral="PORTB" signal="port, 17" pin_num="63" pin_signal="PTB17">
+                     <pin_features>
+                        <pin_feature name="direction" value="INPUT"/>
+                     </pin_features>
+                  </pin>
+                  <pin peripheral="PORTB" signal="port, 14" pin_num="66" pin_signal="PTB14">
+                     <pin_features>
+                        <pin_feature name="direction" value="INPUT"/>
+                     </pin_features>
+                  </pin>
+                  <pin peripheral="PORTB" signal="port, 15" pin_num="65" pin_signal="PTB15">
+                     <pin_features>
+                        <pin_feature name="direction" value="INPUT"/>
+                     </pin_features>
+                  </pin>
+                  <pin peripheral="PORTB" signal="port, 16" pin_num="64" pin_signal="PTB16">
                      <pin_features>
                         <pin_feature name="direction" value="INPUT"/>
                      </pin_features>
