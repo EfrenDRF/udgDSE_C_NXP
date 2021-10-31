@@ -12,8 +12,19 @@
 #include "Signals.h"
 #include "CANpal.h"
 
+/*Global Macro______________________________________________________________*/
+#define SIGNAL_DUC_CAN_ID             (0x02UL)
+#define SIGNAL_DUC_CAN_DATA_LEN       (0x02u)
 
+/*Local variables____________________________________________________________*/
+static uint8_t tx_data[SIGNAL_DUC_CAN_DATA_LEN] = {0x02u, 0x12};
 
+/* ============================================================================
+ * Function Name: Signals_Init
+ * Description:
+ * Arguments:
+ * Return:
+ * ========================================================================= */
 void Signals_Init(void)
 {
 	/* ----------------------- */
@@ -28,18 +39,32 @@ void Signals_Init(void)
 }
 
 //10 ms
+/* ============================================================================
+ * Function Name: Signals_RunTx
+ * Description:
+ * Arguments:
+ * Return:
+ * ========================================================================= */
 void Signals_RunTx(void)
 {
+	volatile status_t cantx_status;
 
+	cantx_status = CANpal_send_CAN_message(SIGNAL_DUC_CAN_ID, SIGNAL_DUC_CAN_DATA_LEN, tx_data);
+
+	(void) cantx_status;
 }
 
-
 //20 ms
+/* ============================================================================
+ * Function Name: Signals_RunRx
+ * Description:
+ * Arguments:
+ * Return:
+ * ========================================================================= */
 void Signals_RunRx(void)
 {
 	/* Call CAN RX timeout process function */
 }
-
 
 /* --------------------------- */
 /* Get timeout flags functions */

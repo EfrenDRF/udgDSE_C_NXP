@@ -27,6 +27,7 @@
 #include "Adc.h"
 #include "Dio.h"
 #include "HwConfig.h"
+#include "Signals.h"
 #include "DcuTasks.h"
 
 /*Local Macro__________________________________________________________________*/
@@ -91,6 +92,8 @@ static void app_task_10ms( void *pvParameters )
 
     for( ;; )
     {
+        Signals_RunTx();
+
         Button_Run();
 
         /* Place this task in the blocked state until it is time to run again.
@@ -120,6 +123,7 @@ void app_task_20ms( void *pvParameters )
 
     for( ;; )
     {
+        Signals_RunRx();
 
         /* Place this task in the blocked state until it is time to run again.
         The block time is specified in ticks, the constant used converts ticks
