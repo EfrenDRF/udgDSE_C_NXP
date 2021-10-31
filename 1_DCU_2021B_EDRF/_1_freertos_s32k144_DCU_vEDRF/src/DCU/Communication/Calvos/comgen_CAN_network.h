@@ -27,10 +27,13 @@
  *  along with calvOS.  If not, see <https://www.gnu.org/licenses/>. */
 /*============================================================================*/
 /*-----------------------------------------------------------------------------
- * This file was generated on (yyyy.mm.dd::hh:mm:ss): 2021.10.6::5:25:33
+ * This file was generated on (yyyy.mm.dd::hh:mm:ss): 2021.10.31::12:26:39
  * Generated from following source(s):
- *     Network file: "G:\devproj\github\calvos_0_4\calvos\calvos-engine\calvos\..
-                      demo\usr_in\template - CAN Network Definition.ods"
+ *     Network file: "/home/efren/Documents/2_Courses/2_CUCEI/2_Diplomado_Conti/..
+                      0_Git/udgDSE_C_NXP/1_DCU_2021B_EDRF/..
+                      _1_freertos_s32k144_DCU_vEDRF/src/DCU/Communication/..
+                      Calvos/Calvos_GenData/usr_in/..
+                      template - CAN Network Definition.ods"
  *     Network name: "CAN-B"
  *     Network id: "B"
  *     Network date: "12/Mar/2021"
@@ -191,9 +194,6 @@ typedef uint8_t t_DCU_3_MC;
 typedef uint8_t t_DCU_3_CRC;
 typedef uint8_t t_DCU_4_MC;
 typedef uint8_t t_DCU_4_CRC;
-
-/* Signal Enumerated Types */
-/* ----------------------- */
 
 /* -------------------------------------------------------------------------- */
 // 		Message structures (layout of signals)
