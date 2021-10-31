@@ -83,8 +83,12 @@ extern "C" {
 #define PASSENGER_CLOSE_BTN_PIN     15U
 #define REARRIGHT_CLOSE_BTN_PORT    PTB
 #define REARRIGHT_CLOSE_BTN_PIN     16U
+#define CAN_RX_PORT    PTE
+#define CAN_RX_PIN     4U
+#define CAN_TX_PORT    PTE
+#define CAN_TX_PIN     5U
 /*! @brief User number of configured pins */
-#define NUM_OF_CONFIGURED_PINS0 30
+#define NUM_OF_CONFIGURED_PINS0 32
 /*! @brief User configuration structure */
 extern pin_settings_config_t g_pin_mux_InitConfigArr0[NUM_OF_CONFIGURED_PINS0];
 

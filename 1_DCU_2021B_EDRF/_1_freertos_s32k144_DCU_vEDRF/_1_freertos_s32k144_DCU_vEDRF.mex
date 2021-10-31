@@ -54,6 +54,8 @@
                <pin_label pin_num="66" pin_signal="PTB14" label="PASSENGER_OPEN_BTN" identifier="PASSENGER_OPEN_BTN"/>
                <pin_label pin_num="65" pin_signal="PTB15" label="PASSENGER_CLOSE_BTN" identifier="PASSENGER_CLOSE_BTN"/>
                <pin_label pin_num="64" pin_signal="PTB16" label="REARRIGHT_CLOSE_BTN" identifier="REARRIGHT_CLOSE_BTN"/>
+               <pin_label pin_num="9" pin_signal="PTE4" label="CAN_RX" identifier="CAN_RX"/>
+               <pin_label pin_num="8" pin_signal="PTE5" label="CAN_TX" identifier="CAN_TX"/>
             </pin_labels>
          </pins_profile>
          <functions_list>
@@ -211,6 +213,8 @@
                         <pin_feature name="direction" value="INPUT"/>
                      </pin_features>
                   </pin>
+                  <pin peripheral="CAN0" signal="rxd, rxd" pin_num="9" pin_signal="PTE4"/>
+                  <pin peripheral="CAN0" signal="txd, txd" pin_num="8" pin_signal="PTE5"/>
                </pins>
             </function>
          </functions_list>
@@ -410,14 +414,39 @@
                   <data type="Version">1.0.0</data>
                </feature>
             </dependency>
+            <dependency resourceType="SWComponent" resourceId="platform.pal.can_pal" description="CAN_PAL Driver not found in the toolchain/IDE project. Project will not compile!" problem_level="2" source="Peripherals">
+               <feature name="enabled" evaluation="equal">
+                  <data type="Boolean">true</data>
+               </feature>
+            </dependency>
+            <dependency resourceType="SWComponent" resourceId="platform.pal.can_pal" description="Unsupported version of the CAN_PAL Driver in the toolchain/IDE project. Required: ${required_value}, actual: ${actual_value}. Project might not compile correctly." problem_level="1" source="Peripherals">
+               <feature name="version" evaluation="equivalent">
+                  <data type="Version">1.0.0</data>
+               </feature>
+            </dependency>
+            <dependency resourceType="SWComponent" resourceId="platform.driver.osif" description="OSIF driver not found in the toolchain/IDE project. Project will not compile!" problem_level="2" source="Peripherals">
+               <feature name="enabled" evaluation="equal">
+                  <data type="Boolean">true</data>
+               </feature>
+            </dependency>
+            <dependency resourceType="SWComponent" resourceId="platform.driver.osif" description="Unsupported version of the OSIF driver in the toolchain/IDE project. Required: ${required_value}, actual: ${actual_value}. Project might not compile correctly." problem_level="1" source="Peripherals">
+               <feature name="version" evaluation="equivalent">
+                  <data type="Version">1.0.0</data>
+               </feature>
+            </dependency>
          </dependencies>
          <generated_project_files>
             <file path="board/FreeRTOSConfig.h" update_enabled="true"/>
             <file path="board/adc_pal_cfg.h" update_enabled="true"/>
+            <file path="board/can_pal_cfg.h" update_enabled="true"/>
             <file path="board/peripherals_FreeRTOS.c" update_enabled="true"/>
             <file path="board/peripherals_FreeRTOS.h" update_enabled="true"/>
             <file path="board/peripherals_adc_pal_1.c" update_enabled="true"/>
             <file path="board/peripherals_adc_pal_1.h" update_enabled="true"/>
+            <file path="board/peripherals_can_pal_1.c" update_enabled="true"/>
+            <file path="board/peripherals_can_pal_1.h" update_enabled="true"/>
+            <file path="board/peripherals_osif_1.c" update_enabled="true"/>
+            <file path="board/peripherals_osif_1.h" update_enabled="true"/>
             <file path="board/sdk_project_config.h" update_enabled="true"/>
          </generated_project_files>
          <peripherals_profile>
@@ -561,6 +590,48 @@
                            </array>
                         </struct>
                      </config_set>
+                  </instance>
+                  <instance name="can_pal_1" uuid="3d0d32c5-2dd2-40c1-bca4-aea7ba11066f" type="can_pal_config" type_id="can_pal" mode="general" peripheral="CAN0" enabled="true" comment="" custom_name_enabled="false" editing_lock="false">
+                     <config_set name="can_pal">
+                        <struct name="can_instance_t2">
+                           <setting name="name" value="can_instance0"/>
+                           <setting name="readonly" value="false"/>
+                           <setting name="instType" value="CAN_INST_TYPE_FLEXCAN"/>
+                        </struct>
+                        <struct name="can_user_config_t2">
+                           <setting name="name" value="can_config0"/>
+                           <setting name="readonly" value="false"/>
+                           <setting name="maxBuffNum" value="16"/>
+                           <setting name="mode" value="CAN_NORMAL_MODE"/>
+                           <setting name="peClkSrc" value="CAN_CLK_SOURCE_OSC"/>
+                           <setting name="enableFD" value="false"/>
+                           <setting name="payloadSize" value="CAN_PAYLOAD_SIZE_8"/>
+                           <setting name="can_bitrate2ts" value="false"/>
+                           <struct name="flexcan_cfg_time_segments1">
+                              <struct name="nominalBitrate">
+                                 <setting name="propSeg" value="7"/>
+                                 <setting name="phaseSeg1" value="4"/>
+                                 <setting name="phaseSeg2" value="1"/>
+                                 <setting name="preDivider" value="0"/>
+                                 <setting name="rJumpwidth" value="1"/>
+                              </struct>
+                              <struct name="dataBitrate"/>
+                           </struct>
+                        </struct>
+                        <struct name="can_fifo_ext2">
+                           <setting name="isRxFIFO_Enable" value="false"/>
+                           <setting name="name" value="can_fifo_ext0"/>
+                           <struct name="struct_extension">
+                              <setting name="readonly" value="false"/>
+                              <setting name="numIdFilters" value="FLEXCAN_RX_FIFO_ID_FILTERS_8"/>
+                              <setting name="idFormat" value="FLEXCAN_RX_FIFO_ID_FORMAT_A"/>
+                              <setting name="idFilterTable" value="NULL"/>
+                           </struct>
+                        </struct>
+                     </config_set>
+                  </instance>
+                  <instance name="osif_1" uuid="14784a8d-851a-486c-b1a4-8ea76bc1df26" type="osif" type_id="osif" mode="general" enabled="true" comment="" custom_name_enabled="false" editing_lock="false">
+                     <config_set name="osif"/>
                   </instance>
                </instances>
             </functional_group>

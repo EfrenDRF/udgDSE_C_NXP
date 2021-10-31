@@ -8,7 +8,7 @@
 #ifndef ECUABSTRACTION_SIGNALS_H_
 #define ECUABSTRACTION_SIGNALS_H_
 
-#include "comgen_CAN_network.h"
+#include "..\Calvos\comgen_CAN_network.h"
 
 extern void Signals_Init(void);
 

@@ -21,9 +21,9 @@
  * for the compiler to find "flexcan_hw_access.h" and
  * "flexcan_irq.h" */
 /* Need to include file flexcan_irq.h for symbol CAN0_ORed_0_15_MB_IRQHandler */
-#include "flexcan_irq.h"
+#include "..\..\..\..\SDK\platform\drivers\src\flexcan\flexcan_irq.h"
 /* Need to include flexcan_hw_access.h for symbols CAN_ID_STD_MASK and CAN_ID_STD_SHIFT */
-#include "flexcan_hw_access.h"
+#include "..\..\..\..\SDK\platform\drivers\src\flexcan\flexcan_hw_access.h"
 
 
 #define CAN_PAL_RX_BUFFER	0
