@@ -27,7 +27,7 @@
 #include "Adc.h"
 #include "Dio.h"
 #include "HwConfig.h"
-#include "Signals.h"
+#include "..\Communication\Signals\Signals.h"
 #include "DcuTasks.h"
 
 /*Local Macro__________________________________________________________________*/
