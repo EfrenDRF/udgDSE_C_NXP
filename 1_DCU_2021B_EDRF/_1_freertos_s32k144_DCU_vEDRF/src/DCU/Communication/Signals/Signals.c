@@ -14,11 +14,10 @@
 #include "comgen_CAN_includes.h"
 
 /*Global Macro______________________________________________________________*/
-#define SIGNAL_DUC_CAN_ID             (0x02UL)
-#define SIGNAL_DUC_CAN_DATA_LEN       (0x02u)
+
 
 /*Local variables____________________________________________________________*/
-static uint8_t tx_data[SIGNAL_DUC_CAN_DATA_LEN] = {0x02u, 0x12};
+
 
 /* ============================================================================
  * Function Name: Signals_Init
@@ -31,7 +30,7 @@ void Signals_Init(void)
 	/* ----------------------- */
 	/* Init CAN driver and PAL */
 	/* ----------------------- */
-    CANpal_init();
+	CANpal_init();
 
 	/* ---------------------- */
 	/* Init interaction layer */
@@ -136,6 +135,164 @@ void Signals_RunRx(void)
     }
 }
 
+SIGNAL_ERROR Signals_Get_SysPwrMode(uint8 * value)
+{
+	SIGNAL_ERROR return_value;
+
+	*value = 0; // Dummy sentence to assign some value for missing switch cases
+	return_value = SIGNAL_ERROR_NO; // Assuming signal is always valid for now (no timeout strategy yet in place)
+
+	switch(HwConfig_Get())
+	{
+		case HWCONFIG_DRIVER:
+			CALVOS_CRITICAL_ENTER();
+			*value = CAN_DCM_DR_get_direct_SysPwrMode();
+			CALVOS_CRITICAL_EXIT();
+			break;
+		case HWCONFIG_PASSENGER:
+			break;
+		case HWCONFIG_REAR_LEFT:
+			break;
+		case HWCONFIG_REAR_RIGHT:
+			break;
+	}
+
+	return return_value;
+}
+
+SIGNAL_ERROR Signals_Get_ConfortCmd(uint8 * value)
+{
+	(void)value;
+	return SIGNAL_ERROR_NEVER_RECEIVED;
+}
+
+SIGNAL_ERROR Signals_Get_VehSpeed(uint8 * value)
+{
+	(void)value;
+	return SIGNAL_ERROR_NEVER_RECEIVED;
+}
+
+SIGNAL_ERROR Signals_Get_ShiftLeverPos(uint8 * value)
+{
+	(void)value;
+	return SIGNAL_ERROR_NEVER_RECEIVED;
+}
+
+SIGNAL_ERROR Signals_Get_ShiftLeverEng(uint8* value)
+{
+	(void)value;
+	return SIGNAL_ERROR_NEVER_RECEIVED;
+}
+
+void Signals_Set_WindowPos(const uint8 *value)
+{
+	switch(HwConfig_Get())
+	{
+		case HWCONFIG_DRIVER:
+			CALVOS_CRITICAL_ENTER();
+			CAN_DCM_DR_update_direct_DCU_1_WindowPos(*value);
+			CALVOS_CRITICAL_EXIT();
+			break;
+		case HWCONFIG_PASSENGER:
+			break;
+		case HWCONFIG_REAR_LEFT:
+			break;
+		case HWCONFIG_REAR_RIGHT:
+			break;
+	}
+}
+
+void Signals_Set_LockingReq(const uint8 *value)
+{
+	(void)value;
+}
+
+SIGNAL_ERROR Signals_Get_LockingReq_Driver(uint8 * value)
+{
+	(void)value;
+	return SIGNAL_ERROR_NEVER_RECEIVED;
+}
+
+SIGNAL_ERROR Signals_Get_LockingReq_Passenger(uint8 * value)
+{
+	(void)value;
+	return SIGNAL_ERROR_NEVER_RECEIVED;
+}
+
+void Signals_Set_WindowOp(const uint8* value)
+{
+	(void)value;
+}
+
+void Signals_Set_RearWindowLock(const uint8 *value)
+{
+	(void)value;
+}
+
+SIGNAL_ERROR Signals_Get_RearWindowLock(uint8 *value)
+{
+	(void)value;
+	return SIGNAL_ERROR_NEVER_RECEIVED;
+}
+
+void Signals_Set_DoorLockSts(const uint8 *value)
+{
+	(void)value;
+}
+
+SIGNAL_ERROR Signals_Get_Passenger_DoorLockSts(uint8 * value)
+{
+	(void)value;
+	return SIGNAL_ERROR_NEVER_RECEIVED;
+}
+
+SIGNAL_ERROR Signals_Get_RearLeft_DoorLockSts(uint8 * value)
+{
+	(void)value;
+	return SIGNAL_ERROR_NEVER_RECEIVED;
+}
+
+SIGNAL_ERROR Signals_Get_RearRight_DoorLockSts(uint8 * value)
+{
+	(void)value;
+	return SIGNAL_ERROR_NEVER_RECEIVED;
+}
+
+void Signals_Set_WindowControl_Passenger(const uint8 *value)
+{
+	(void)value;
+}
+
+void Signals_Set_WindowControl_RearLeft(const uint8 *value)
+{
+	(void)value;
+}
+
+void Signals_Set_WindowControl_RearRight(const uint8 *value)
+{
+	(void)value;
+}
+
+SIGNAL_ERROR Signals_Get_WindowControl_Passenger(uint8 *value)
+{
+	(void)value;
+	return SIGNAL_ERROR_NEVER_RECEIVED;
+}
+
+SIGNAL_ERROR Signals_Get_WindowControl_RearLeft(uint8 *value)
+{
+	(void)value;
+	return SIGNAL_ERROR_NEVER_RECEIVED;
+}
+
+SIGNAL_ERROR Signals_Get_WindowControl_RearRight(uint8 *value)
+{
+	(void)value;
+	return SIGNAL_ERROR_NEVER_RECEIVED;
+}
+
+
+# if(0)
 /* --------------------------- */
 /* Get timeout flags functions */
 /* --------------------------- */
@@ -530,5 +687,4 @@ void Signals_Set_DCU_4_CRC(t_DCU_4_CRC value)
 	(void) value;
 	CALVOS_CRITICAL_EXIT();
 }
-
-
+# endif
