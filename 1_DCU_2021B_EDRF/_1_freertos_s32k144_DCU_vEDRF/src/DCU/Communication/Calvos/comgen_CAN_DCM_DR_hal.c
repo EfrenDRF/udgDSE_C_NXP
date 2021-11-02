@@ -41,9 +41,11 @@
  *     Network version: "2"
  -----------------------------------------------------------------------------*/
 #include "calvos.h"
+#include "CANpal.h"
 #include "comgen_CAN_common.h"
 #include "comgen_CAN_DCM_DR_hal.h"
 #include "comgen_CAN_DCM_DR_core.h"
+#include "sdk_project_config.h"
 
 /* Macro for confirming TX msg ID */
 /* This macro is generated based on parameter "CAN_tx_confirm_msg_id" */

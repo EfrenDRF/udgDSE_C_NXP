@@ -1,6 +1,0 @@
-{
-    "files.associations": {
-        "sdk_project_config.h": "c",
-        "button_debounce.h": "c"
-    }
-}
