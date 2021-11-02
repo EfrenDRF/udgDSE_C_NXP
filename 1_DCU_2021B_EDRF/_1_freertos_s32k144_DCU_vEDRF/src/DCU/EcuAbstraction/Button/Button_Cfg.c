@@ -9,7 +9,7 @@
 #include "Button_Cfg.h"
 #include "Dio.h"
 
-/*Global Macro______________________________________________________________*/
+/*Local Macro_______________________________________________________________*/
 #define THRESHOLD1   ((ButtonDebData_t) 0x05u)
 #define THRESHOLD2   ((ButtonDebData_t) 0x64u)
 
