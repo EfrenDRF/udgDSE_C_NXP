@@ -138,7 +138,6 @@ void can_DCM_RL_HALconfirmTxMsg(void){
  * ===========================================================================*/
 void can_DCM_RL_HALreceiveMsg(uint32_t msg_id, uint8_t* data_in, uint8_t data_len){
 
-	#warning "This function shall be called in user's CAN HAL rx ISR. Remove this line when done".
 	// Call RX processor function
 	can_DCM_RL_processRxMessage(msg_id, data_in, data_len);
 }
@@ -152,5 +151,7 @@ void can_DCM_RL_HALreceiveMsg(uint32_t msg_id, uint8_t* data_in, uint8_t data_le
 void can_DCM_RL_HALinit(void){
 
 	// Write user code to initialize CAN HAL in the target MCU.
+#if (0)
 	#warning "User code needed here. Remove this line when done."
+# endif
 }
