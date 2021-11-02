@@ -1,7 +1,7 @@
 /*============================================================================*/
 /*                           calvOS Project                                   */
 /*============================================================================*/
-/** \file		USER_comgen_CAN_DCM_RR_hal.c                                  */
+/** \file		USER_comgen_CAN_DCM_RL_hal.c                                  */
 /** \brief     	Source file for CAN Hardware Abstraction Layer functions.
  *  \details   	Defines functions that need to be filled with user code in order
  *  			to integrate the CAN interaction layer with the hardware
@@ -42,15 +42,15 @@
  -----------------------------------------------------------------------------*/
 #include "calvos.h"
 #include "comgen_CAN_common.h"
-#include "comgen_CAN_DCM_RR_hal.h"
-#include "comgen_CAN_DCM_RR_core.h"
+#include "comgen_CAN_DCM_RL_hal.h"
+#include "comgen_CAN_DCM_RL_core.h"
 
 /* Macro for confirming TX msg ID */
 /* This macro is generated based on parameter "CAN_tx_confirm_msg_id" */
-#define CAN_DCM_RR_CONFIRM_MSG_ID		kTrue
+#define CAN_DCM_RL_CONFIRM_MSG_ID		kTrue
 
-#if CAN_DCM_RR_CONFIRM_MSG_ID==kTrue
-uint32_t can_DCM_RR_HALgetTxdMsgId(void);
+#if CAN_DCM_RL_CONFIRM_MSG_ID==kTrue
+uint32_t can_DCM_RL_HALgetTxdMsgId(void);
 #endif
 
 /* =============================================================================
@@ -67,12 +67,19 @@ uint32_t can_DCM_RR_HALgetTxdMsgId(void);
  * @return 	Returns @c kNoError if transmission was accepted by the HAL, returns
  * 			@c kError if it was not accepted.
  * ===========================================================================*/
-CalvosError can_DCM_RR_HALtransmitMsg(const CANtxMsgStaticData* msg_info){
+CalvosError can_DCM_RL_HALtransmitMsg(const CANtxMsgStaticData* msg_info){
 
 	CalvosError return_value = kError;
+	status_t local_status = STATUS_ERROR;
+
 	// Write HAL code to transmit a CAN message. Information about the message
 	// can be extracted from the provided msg_info structure.
-	#warning "User code needed here. Remove this line when done."
+	local_status = CANpal_send_CAN_message(msg_info->id, msg_info->fields.len, msg_info->data);
+
+	if (STATUS_SUCCESS == local_status)
+	{
+		return_value = kNoError;
+	}
 
 	return return_value;
 }
@@ -84,13 +91,13 @@ CalvosError can_DCM_RR_HALtransmitMsg(const CANtxMsgStaticData* msg_info){
  * target CAN HAL. This function is invoked by the TX confirmation function
  * "can_NWID_NODEID_HALconfirmTxMsg".
  * ===========================================================================*/
-#if CAN_DCM_RR_CONFIRM_MSG_ID==kTrue
-uint32_t can_DCM_RR_HALgetTxdMsgId(void){
+#if CAN_DCM_RL_CONFIRM_MSG_ID==kTrue
+uint32_t can_DCM_RL_HALgetTxdMsgId(void){
 
 	uint32_t txd_msg_id;
 	// Write user code to return the ID of the CAN message just transmitted
 	// by the CAN HAL.
-	#warning "User code needed here. Remove this line when done."
+	txd_msg_id = CANpal_get_Txd_Id();
 
 	return txd_msg_id;
 }
@@ -102,16 +109,16 @@ uint32_t can_DCM_RR_HALgetTxdMsgId(void){
  * This function shall be called when the target MCU confirms the transmission
  * of the lastly requested tx message.
  * ===========================================================================*/
-void can_DCM_RR_HALconfirmTxMsg(void){
+void can_DCM_RL_HALconfirmTxMsg(void){
 
-#if CAN_DCM_RR_CONFIRM_MSG_ID==kTrue
+#if CAN_DCM_RL_CONFIRM_MSG_ID==kTrue
 	uint32_t txd_msg_id;
 	// Get ID of the message just transmitted
-	txd_msg_id = can_DCM_RR_HALgetTxdMsgId();
+	txd_msg_id = can_DCM_RL_HALgetTxdMsgId();
 	// Confirm TX message if ID matches
-	can_commonConfirmTxMsg(can_DCM_RR_transmittingMsg, kTrue, txd_msg_id);
+	can_commonConfirmTxMsg(can_DCM_RL_transmittingMsg, kTrue, txd_msg_id);
 #else
-	can_commonConfirmTxMsg(can_DCM_RR_transmittingMsg, kFalse, NULL);
+	can_commonConfirmTxMsg(can_DCM_RL_transmittingMsg, kFalse, NULL);
 #endif
 }
 
@@ -126,11 +133,11 @@ void can_DCM_RR_HALconfirmTxMsg(void){
  * @param data_len	Length of the received data. If it will depend on message
  * 					definition pass this parameter as zero.
  * ===========================================================================*/
-void can_DCM_RR_HALreceiveMsg(uint32_t msg_id, uint8_t* data_in, uint8_t data_len){
+void can_DCM_RL_HALreceiveMsg(uint32_t msg_id, uint8_t* data_in, uint8_t data_len){
 
 	#warning "This function shall be called in user's CAN HAL rx ISR. Remove this line when done".
 	// Call RX processor function
-	can_DCM_RR_processRxMessage(msg_id, data_in, data_len);
+	can_DCM_RL_processRxMessage(msg_id, data_in, data_len);
 }
 
 /* ===========================================================================*/
@@ -139,7 +146,7 @@ void can_DCM_RR_HALreceiveMsg(uint32_t msg_id, uint8_t* data_in, uint8_t data_le
  * This function is called by can_NWID_NODEID_coreInit function and is in charge
  * of initializing the CAN HAL for the target MCU.
  * ===========================================================================*/
-void can_DCM_RR_HALinit(void){
+void can_DCM_RL_HALinit(void){
 
 	// Write user code to initialize CAN HAL in the target MCU.
 	#warning "User code needed here. Remove this line when done."

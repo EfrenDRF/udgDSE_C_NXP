@@ -11,6 +11,7 @@
 #include "HwConfig.h"
 #include "Signals.h"
 #include "CANpal.h"
+#include "comgen_CAN_includes.h"
 
 /*Global Macro______________________________________________________________*/
 #define SIGNAL_DUC_CAN_ID             (0x02UL)
@@ -30,11 +31,34 @@ void Signals_Init(void)
 	/* ----------------------- */
 	/* Init CAN driver and PAL */
 	/* ----------------------- */
-	CANpal_init();
+    CANpal_init();
 
 	/* ---------------------- */
 	/* Init interaction layer */
 	/* ---------------------- */
+    switch (HwConfig_Get())
+    {
+        case HWCONFIG_DRIVER:
+        {
+            can_DCM_DR_coreInit();
+        }break;
+        case HWCONFIG_PASSENGER:
+        {
+            can_DCM_PS_coreInit();
+        }break;
+        case HWCONFIG_REAR_LEFT:
+        {
+            can_DCM_RL_coreInit();
+        }break;
+        case HWCONFIG_REAR_RIGHT:
+        {
+            can_DCM_RR_coreInit();
+        }break;
+        default:
+        {
+            /* Avoid Misra - No action required */
+        }break;
+    }
 
 }
 
@@ -47,11 +71,33 @@ void Signals_Init(void)
  * ========================================================================= */
 void Signals_RunTx(void)
 {
-	volatile status_t cantx_status;
-
-	cantx_status = CANpal_send_CAN_message(SIGNAL_DUC_CAN_ID, SIGNAL_DUC_CAN_DATA_LEN, tx_data);
-
-	(void) cantx_status;
+    switch (HwConfig_Get())
+    {
+        case HWCONFIG_DRIVER:
+        {
+            can_DCM_DR_txRetry();
+            can_task_10ms_DCM_DR_txProcess();
+        }break;
+        case HWCONFIG_PASSENGER:
+        {
+            can_DCM_PS_txRetry();
+            can_task_10ms_DCM_PS_txProcess();
+        }break;
+        case HWCONFIG_REAR_LEFT:
+        {
+            can_DCM_RL_txRetry();
+            can_task_10ms_DCM_RL_txProcess();
+        }break;
+        case HWCONFIG_REAR_RIGHT:
+        {
+            can_DCM_RR_txRetry();
+            can_task_10ms_DCM_RR_txProcess();
+        }break;
+        default:
+        {
+            /* Avoid Misra - No action required */
+        }break;
+    }
 }
 
 //20 ms
@@ -64,6 +110,30 @@ void Signals_RunTx(void)
 void Signals_RunRx(void)
 {
 	/* Call CAN RX timeout process function */
+
+    switch (HwConfig_Get())
+    {
+        case HWCONFIG_DRIVER:
+        {
+            can_task_20ms_DCM_DR_rxProcess();
+        }break;
+        case HWCONFIG_PASSENGER:
+        {
+           can_task_20ms_DCM_PS_rxProcess();
+        }break;
+        case HWCONFIG_REAR_LEFT:
+        {
+            can_task_20ms_DCM_RL_rxProcess();
+        }break;
+        case HWCONFIG_REAR_RIGHT:
+        {
+            can_task_20ms_DCM_RR_rxProcess();
+        }break;
+        default:
+        {
+            /* Avoid Misra - No action required */
+        }break;
+    }
 }
 
 /* --------------------------- */

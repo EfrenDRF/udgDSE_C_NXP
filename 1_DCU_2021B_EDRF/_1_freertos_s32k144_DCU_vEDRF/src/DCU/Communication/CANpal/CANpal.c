@@ -174,16 +174,19 @@ static void CANpal_event_callback(uint32_t instance, can_event_t eventType,
 		switch(HwConfig_Get())
 		{
 			case HWCONFIG_DRIVER:
-				//can_DCM_DR_HALreceiveMsg(rx_message.id, rx_message.data, rx_message.length);
+				can_DCM_DR_HALreceiveMsg(rx_message.id, rx_message.data, rx_message.length);
 				break;
 			case HWCONFIG_PASSENGER:
 				/* call HALreceiveMsg function for DCM_PS */
+				can_DCM_PS_HALreceiveMsg(rx_message.id, rx_message.data, rx_message.length);
 				break;
 			case HWCONFIG_REAR_LEFT:
 				/* call HALreceiveMsg function for DCM_RL */
+				can_DCM_RL_HALreceiveMsg(rx_message.id, rx_message.data, rx_message.length);
 				break;
 			case HWCONFIG_REAR_RIGHT:
 				/* call HALreceiveMsg function for DCM_RR */
+				can_DCM_RR_HALreceiveMsg(rx_message.id, rx_message.data, rx_message.length);
 				break;
 		}
 	}
@@ -194,21 +197,27 @@ static void CANpal_event_callback(uint32_t instance, can_event_t eventType,
 		{
 			case HWCONFIG_DRIVER:
 				/* Successful transmission. Confirm TX */
-				//can_DCM_DR_HALconfirmTxMsg();
+				can_DCM_DR_HALconfirmTxMsg();
 				/* Trigger retry strategy */
-				//can_DCM_DR_txRetry();
+				can_DCM_DR_txRetry();
 				break;
 			case HWCONFIG_PASSENGER:
 				/* Call HALconfirmTxMsg function for DCM_PS */
+				can_DCM_PS_HALconfirmTxMsg();
 				/* Call txRetry function for DCM_PS */
+				can_DCM_PS_txRetry();
 				break;
 			case HWCONFIG_REAR_LEFT:
 				/* Call HALconfirmTxMsg function for DCM_RL */
+				can_DCM_RL_HALconfirmTxMsg();
 				/* Call txRetry function for DCM_RL */
+				can_DCM_RL_txRetry();
 				break;
 			case HWCONFIG_REAR_RIGHT:
 				/* Call HALconfirmTxMsg function for DCM_RR */
+				can_DCM_RR_HALconfirmTxMsg();
 				/* Call txRetry function for DCM_RR */
+				can_DCM_RR_txRetry();
 				break;
 		}
 	}
