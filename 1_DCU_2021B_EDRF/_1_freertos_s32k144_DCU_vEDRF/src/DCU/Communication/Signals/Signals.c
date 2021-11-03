@@ -13,7 +13,7 @@
 #include "CANpal.h"
 #include "comgen_CAN_includes.h"
 
-/*Global Macro______________________________________________________________*/
+/*Local Macros_______________________________________________________________*/
 
 
 /*Local variables____________________________________________________________*/
@@ -139,7 +139,7 @@ SIGNAL_ERROR Signals_Get_SysPwrMode(uint8 * value)
 {
     SIGNAL_ERROR return_value;
 
-    value[0] = 0; // Dummy sentence to assign some value for missing switch cases
+    value[0] = 0x00u; // Dummy sentence to assign some value for missing switch cases
     return_value = SIGNAL_ERROR_NO; // Assuming signal is always valid for now (no timeout strategy yet in place)
 
     switch(HwConfig_Get())
@@ -185,7 +185,7 @@ SIGNAL_ERROR Signals_Get_ConfortCmd(uint8 * value)
 {
     SIGNAL_ERROR return_value;
 
-    value[0] = 0; // Dummy sentence to assign some value for missing switch cases
+    value[0] = 0x00u; // Dummy sentence to assign some value for missing switch cases
     return_value = SIGNAL_ERROR_NO; // Assuming signal is always valid for now (no timeout strategy yet in place)
 
     switch(HwConfig_Get())
@@ -231,7 +231,7 @@ SIGNAL_ERROR Signals_Get_VehSpeed(uint8 * value)
 {
     SIGNAL_ERROR return_value;
 
-    value[0] = 0; // Dummy sentence to assign some value for missing switch cases
+    value[0] = 0x00u; // Dummy sentence to assign some value for missing switch cases
     return_value = SIGNAL_ERROR_NO; // Assuming signal is always valid for now (no timeout strategy yet in place)
 
     switch(HwConfig_Get())
@@ -277,7 +277,7 @@ SIGNAL_ERROR Signals_Get_ShiftLeverPos(uint8 * value)
 {
     SIGNAL_ERROR return_value;
 
-    value[0] = 0; // Dummy sentence to assign some value for missing switch cases
+    value[0] = 0x00u; // Dummy sentence to assign some value for missing switch cases
     return_value = SIGNAL_ERROR_NO; // Assuming signal is always valid for now (no timeout strategy yet in place)
 
     switch(HwConfig_Get())
@@ -323,7 +323,7 @@ SIGNAL_ERROR Signals_Get_ShiftLeverEng(uint8* value)
 {
     SIGNAL_ERROR return_value;
 
-    value[0] = 0; // Dummy sentence to assign some value for missing switch cases
+    value[0] = 0x00u; // Dummy sentence to assign some value for missing switch cases
     return_value = SIGNAL_ERROR_NO; // Assuming signal is always valid for now (no timeout strategy yet in place)
 
     switch(HwConfig_Get())
@@ -439,7 +439,7 @@ SIGNAL_ERROR Signals_Get_LockingReq_Driver(uint8 * value)
 {
     SIGNAL_ERROR return_value;
 
-    value[0] = 0; // Dummy sentence to assign some value for missing switch cases
+    value[0] = 0x00u; // Dummy sentence to assign some value for missing switch cases
     return_value = SIGNAL_ERROR_NO; // Assuming signal is always valid for now (no timeout strategy yet in place)
 
     switch(HwConfig_Get())
@@ -485,7 +485,7 @@ SIGNAL_ERROR Signals_Get_LockingReq_Passenger(uint8 * value)
 {
     SIGNAL_ERROR return_value;
 
-    value[0] = 0; // Dummy sentence to assign some value for missing switch cases
+    value[0] = 0x00u; // Dummy sentence to assign some value for missing switch cases
     return_value = SIGNAL_ERROR_NO; // Assuming signal is always valid for now (no timeout strategy yet in place)
 
     switch(HwConfig_Get())
@@ -595,7 +595,7 @@ SIGNAL_ERROR Signals_Get_RearWindowLock(uint8 *value)
 {
     SIGNAL_ERROR return_value;
 
-    value[0] = 0; // Dummy sentence to assign some value for missing switch cases
+    value[0] = 0x00u; // Dummy sentence to assign some value for missing switch cases
     return_value = SIGNAL_ERROR_NO; // Assuming signal is always valid for now (no timeout strategy yet in place)
 
     switch(HwConfig_Get())
@@ -680,7 +680,7 @@ SIGNAL_ERROR Signals_Get_Passenger_DoorLockSts(uint8 * value)
 {
     SIGNAL_ERROR return_value;
 
-    value[0] = 0; // Dummy sentence to assign some value for missing switch cases
+    value[0] = 0x00u; // Dummy sentence to assign some value for missing switch cases
     return_value = SIGNAL_ERROR_NO; // Assuming signal is always valid for now (no timeout strategy yet in place)
 
     switch(HwConfig_Get())
@@ -726,7 +726,7 @@ SIGNAL_ERROR Signals_Get_RearLeft_DoorLockSts(uint8 * value)
 {
     SIGNAL_ERROR return_value;
 
-    value[0] = 0; // Dummy sentence to assign some value for missing switch cases
+    value[0] = 0x00u; // Dummy sentence to assign some value for missing switch cases
     return_value = SIGNAL_ERROR_NO; // Assuming signal is always valid for now (no timeout strategy yet in place)
 
     switch(HwConfig_Get())
@@ -758,7 +758,7 @@ SIGNAL_ERROR Signals_Get_RearRight_DoorLockSts(uint8 * value)
 {
     SIGNAL_ERROR return_value;
 
-    value[0] = 0; // Dummy sentence to assign some value for missing switch cases
+    value[0] = 0x00u; // Dummy sentence to assign some value for missing switch cases
     return_value = SIGNAL_ERROR_NO; // Assuming signal is always valid for now (no timeout strategy yet in place)
 
     switch(HwConfig_Get())
@@ -864,7 +864,7 @@ SIGNAL_ERROR Signals_Get_WindowControl_Passenger(uint8 *value)
 {
     SIGNAL_ERROR return_value;
 
-    value[0] = 0; // Dummy sentence to assign some value for missing switch cases
+    value[0] = 0x00u; // Dummy sentence to assign some value for missing switch cases
     return_value = SIGNAL_ERROR_NO; // Assuming signal is always valid for now (no timeout strategy yet in place)
 
     switch(HwConfig_Get())
@@ -910,7 +910,7 @@ SIGNAL_ERROR Signals_Get_WindowControl_RearLeft(uint8 *value)
 {
     SIGNAL_ERROR return_value;
 
-    value[0] = 0; // Dummy sentence to assign some value for missing switch cases
+    value[0] = 0x00u; // Dummy sentence to assign some value for missing switch cases
     return_value = SIGNAL_ERROR_NO; // Assuming signal is always valid for now (no timeout strategy yet in place)
 
     switch(HwConfig_Get())
@@ -956,7 +956,7 @@ SIGNAL_ERROR Signals_Get_WindowControl_RearRight(uint8 *value)
 {
     SIGNAL_ERROR return_value;
 
-    value[0] = 0; // Dummy sentence to assign some value for missing switch cases
+    value[0] = 0x00u; // Dummy sentence to assign some value for missing switch cases
     return_value = SIGNAL_ERROR_NO; // Assuming signal is always valid for now (no timeout strategy yet in place)
 
     switch(HwConfig_Get())

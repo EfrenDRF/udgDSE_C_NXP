@@ -30,12 +30,18 @@
 #include "..\Communication\Signals\Signals.h"
 #include "DcuTasks.h"
 
-/*Local Macro__________________________________________________________________*/
+/*Local Macros______________________________________________________________*/
+#define ACT_3_5
+#define ACT_3_6
+#define ACT_3_7
+
 #define app_10ms_TASK_PRIORITY      ( tskIDLE_PRIORITY + 3u )
 #define app_20ms_TASK_PRIORITY      ( tskIDLE_PRIORITY + 2u )
 #define app_100ms_TASK_PRIORITY     ( tskIDLE_PRIORITY + 1u )
 
-#define ANTIPINCH_LIMIT             (500UL)
+#ifdef ACT_3_5
+#define ACT_3_5_ANTIPINCH_LIMIT     (500UL)
+#endif
 
 /* Local Function Prototypes */
 static void Tasks_StartOS(void);
@@ -144,9 +150,22 @@ void app_task_20ms( void *pvParameters )
  * ========================================================================= */
 static void app_task_100ms( void *pvParameters )
 {
-    static PIN_VALUE      toogleVal = DIO_LOW;
-    static BUTTON_STATUS  buttonVal = BUTTON_NOT_PRESSED;
     TickType_t xNextWakeTime;
+
+# ifdef ACT_3_5
+    PIN_VALUE  DoorUnlockPin_value;
+# endif
+
+# ifdef ACT_3_6
+    PIN_VALUE      DoorLockPin_value;
+    BUTTON_STATUS  button_value;
+# endif
+
+# ifdef ACT_3_7
+	SIGNAL_ERROR error_code;
+	uint8_t signal_value;
+# endif
+    
 
     /* Casting pvParameters to void because it is unused */
     (void)pvParameters;
@@ -159,24 +178,45 @@ static void app_task_100ms( void *pvParameters )
 
         Adc_Run();
         
-        if (Adc_Get_AntiPinch_Value() >= ANTIPINCH_LIMIT)
+# ifdef ACT_3_5
+		if (ACT_3_5_ANTIPINCH_LIMIT <= Adc_Get_AntiPinch_Value())
+		{
+			/* Toogle Green LED */
+			DoorUnlockPin_value ^= DIO_HIGH;
+		}
+		else
+		{
+			/* Turn off Green LED */
+			DoorUnlockPin_value = DIO_HIGH;	
+		}
+
+		Dio_Write_DoorUnlock_Led(DoorUnlockPin_value);
+# endif
+
+# ifdef ACT_3_6
+        button_value = Button_Get_Window_Close();
+        
+        if(BUTTON_PRESSED == button_value)
         {
-            toogleVal ^= DIO_HIGH;
-            Dio_Write_DoorUnlock_Led(toogleVal);
-            Dio_Write_DoorLock_Led(DIO_HIGH);
+            Button_CleanStatus(BUTTON_CFG_CLOSE_BTN_IDX);
+            DoorLockPin_value ^= DIO_HIGH;
         }
         else
         {
-            buttonVal = Button_Get_Window_Close();
-
-            if(BUTTON_PRESSED == buttonVal )
-            {
-                Button_CleanStatus(BUTTON_CFG_CLOSE_BTN_IDX);
-                toogleVal ^= DIO_HIGH; 
-            }
-            Dio_Write_DoorUnlock_Led( DIO_HIGH );
-            Dio_Write_DoorLock_Led(toogleVal);
+           DoorLockPin_value = DIO_HIGH; 
         }
+
+        Dio_Write_DoorLock_Led(DoorLockPin_value);
+# endif
+
+# ifdef ACT_3_7
+		error_code = Signals_Get_SysPwrMode(&signal_value);
+
+		if ((SIGNAL_ERROR_NO == error_code) && (SYSPWRMODE_SNA != signal_value))
+		{
+			Signals_Set_WindowOp(&signal_value);
+		}
+# endif
 
         /* Place this task in the blocked state until it is time to run again.
         The block time is specified in ticks, the constant used converts ticks
