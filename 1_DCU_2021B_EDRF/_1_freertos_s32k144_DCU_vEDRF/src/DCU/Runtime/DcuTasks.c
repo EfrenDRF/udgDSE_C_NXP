@@ -69,6 +69,8 @@ void init_hook(void)
     HwConfig_Init();
 
     Button_Init();
+    
+    Signals_Init();
 
     Tasks_StartOS();
 }
